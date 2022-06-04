@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+</head>
+<style>
+    *{
+        margin: 0px;
+        padding: 0px;
+    }
+    body {
+        background: url("{{url_for('static',filename='agents.jpeg')}}");
+        background-size: cover;
+        background-repeat: no-repeat;
+        opacity: 1;
+        z-index: -2;
+    }
+
+    .navbar {
+        display: flex;
+        position: sticky;
+        justify-content: space-between;
+        top: 1px;
+        /* height: 63px; */
+        width: auto;
+    }
+
+    .navbar .container {
+        display: flex;
+    }
+
+    .navbar img {
+        margin: 4px;
+        height: 56px;
+        width: 56px;
+    }
+
+    .navbar ul {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .navbar ul li {
+        list-style: none;
+    }
+
+    .navbar ul li a {
+        text-decoration: none;
+        padding: 15px 17px;
+        font-size: 1.5rem;
+        color: white;
+    }
+
+    .navbar ul li a:hover {
+        background-color: rgb(77, 64, 64);
+        border-radius: 20px;
+        color: bisque;
+    }
+
+    .navbar::before {
+        content: "";
+        background-color:orange;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        opacity: 1;
+
+    }
+
+    .navbar .name {
+        display: flex;
+        justify-content: space-evenly;
+        width: 455px;
+        color: white;
+        margin: 0px 11px;
+    }
+    input{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        font-weight: bold;
+       border-radius: 10px;
+    }
+    input[type=number]{
+        width: 17%;
+        height: 26px;
+    }
+    input[type=submit]{
+        text-align: center;
+        margin: 0px 3px;
+        width:80px;
+        background-color: rgb(47, 47, 197);
+        border-radius: 4px;
+        color: white;
+    }
+    input[type=submit]:hover{
+        background-color: rgb(191, 151, 91);
+        color: black;
+        transform: scale(1.20);
+    }
+    
+    table,th,td {
+            border: 3px solid black;
+        }
+        table {
+            width: 60%;
+            border-collapse: collapse;
+            font-size: 1.25rem;
+            color: white;
+        }
+        th{
+            background-color: #04AA6D;
+            color: white;
+            height: 58px;
+            text-align: left;
+        }
+        /* tr:hover{
+            color: black;
+            background-color:#f2f2f2;
+            transform: scale(1.25);
+        } */
+        tr:nth-child(even) {background-color: #4c0f0f;}
+    </style>
+</style>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+
+            <div class="logo">
+                <img src="{{url_for('static',filename='allied-bank-logo.jpg')}}" alt="www.alliedcars.com">
+            </div>
+            <ul>
+                <li><a href="/admin_upload">upload</a></li>
+                <li><a href="/customers">customer</a></li>
+                <li><a href="/update">update</a></li>
+                <li><a href="/delete">delete</a></li>
+            </ul>
+        </div>
+        <div class="name">
+            <h2 style="margin:20px 0px;"> Welcome! {{result.name}}</h2>
+            <ul>
+                <li><a href="/agent-sign">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+    <section style="margin:25px 0px;">
+        <table style="margin:0px auto;">
+            <thead>
+                <tr>
+                    <th>car ID</th>
+                    <th>Model</th>
+                    <th>Branch ID</th>
+                    <th>Manufracturer</th>
+                    <th>price</th>
+                    <th>img</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in data %}
+                <tr>
+                    <td>{{item.car_id}}</td>
+                    <td>{{item.model}}</td>
+                    <td>{{item.branch_id}}</td>
+                    <td>{{item.manufacturer}}</td>
+                    <td>{{item.price}}</td>
+                    <td>{{item.img}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+<div style="text-align:center;" class="box">
+
+    <form  style="display:flex;justify-content: center;" action="/delete_id" method="POST">
+        <!-- <span><strong style="font-size:1.25rem;margin:0px 3px">Delete</strong></span> -->
+        <input type="number" name="id" id="id" placeholder="CAR ID">
+        <input type="submit" value=" Delete">
+    </form>
+</div>
+<div style="margin: 12px 0px;" class="flash">
+    <!-- this code is used for showing any sucsees/worning/failur popup message -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{category}}">
+                    <span style="font-weight: bold;font-size: 2rem;background-color: #6cce6c;opacity: 0.8;display: flex;justify-content:center;">{{ message }}</span>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <div class="d-flex justify-content-center h-100">
+
+        {% block content %}
+
+        {% endblock %}
+    
+</div>
+</body>
+
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Allied Cars</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+           
+        }
+        body {
+            background-color: black;
+        }
+
+        .navbar {
+            display: flex;
+            position: relative;
+            /* height: 63px; */
+            width: auto;
+        }
+
+        .navbar img {
+            margin: 4px;
+            height: 56px;
+            width: 56px;
+        }
+
+        .navbar ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .navbar ul li {
+            list-style: none;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            padding: 15px 17px;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .navbar ul li a:hover {
+            background-color: rgb(77, 64, 64);
+            border-radius: 20px;
+            color: bisque;
+        }
+
+        .navbar::before {
+            content: "";
+            background-color:orange;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 1;
+            overflow: auto;
+        }
+
+        div .p {
+            color: red;
+        }
+        .home::before {
+            content: "";
+            background: url("{{url_for('static',filename='cars.jpg')}}") no-repeat center center/cover;
+            background-repeat: no-repeat;
+
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            z-index: -2;
+            opacity: 1;
+
+        }
+
+        .home {
+            height: 590px;
+            display: flex;
+            font-size: 2rem;
+            color: aliceblue;
+            justify-content: center;
+            align-items: center;
+            /* background-color: aqua; */
+        }
+
+        #subhead {
+            text-align: center;
+        }
+
+        .signin {
+            border: 2px solid paleturquoise;
+            color: white;
+            text-decoration: none;
+            display: block;
+            width: 106px;
+            margin: 39px auto;
+            text-align: center;
+            border-radius: 30px;
+            margin-top: 50px;
+        }
+
+        .signin:hover {
+            background-color: white;
+            color: whitesmoke;
+            transition: all 0.5s ease-in-out;
+            background-color: rgb(107, 28, 107); 
+            
+        }
+
+        @media only screen and (max-width:476px) {
+            .navbar ul li a {
+                text-decoration: none;
+                padding: 3px 1px;
+                font-size: 1.25rem;
+                color: white;
+                margin: 0px 3px;
+            }
+        }
+
+        @media only screen and (max-width:383px) {
+            .navbar {
+                display: flex;
+                position: relative;
+                flex-direction: column;
+                width: auto;
+            }
+
+            .navbar img {
+                display: block;
+                margin: auto;
+                height: 56px;
+                width: 56px;
+            }
+
+            .navbar ul li a {
+                text-decoration: none;
+                padding: 3px 1px;
+                font-size: 1.25rem;
+                color: white;
+                margin: 0px 3px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="{{url_for('static',filename='allied-bank-logo.jpg')}}" alt="www.alliedcars.com">
+        </div>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/contactus">Contact us</a></li>
+            <li><a href="/aboutus">About us</a></li>
+        </ul>
+    </nav>
+    <section class="home">
+        <div>
+            <h1>Get your <span class="p">Dream Car</span> by visiting us!! </h1>
+            <h3 id="subhead">To Begin Sign Up </h3>
+            <a href="/login_page" class="signin">Sign In</a>
+        </div>
+    </section>
+</body>
+
+</html>

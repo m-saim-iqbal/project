@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customers</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <style>
+        /* body {
+            background: url("{{url_for('static',filename='wooden.jpg')}}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            opacity: 0.8;
+            z-index: -2;
+        } */
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .navbar {
+            display: flex;
+            position: sticky;
+            justify-content: space-between;
+            top: 1px;
+            /* height: 63px; */
+            width: auto;
+        }
+
+        .navbar img {
+            margin: 4px;
+            height: 56px;
+            width: 56px;
+        }
+
+        .navbar .logo {
+            display: flex;
+        }
+
+        .navbar ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .navbar ul li {
+            list-style: none;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            padding: 15px 17px;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .navbar ul li a:hover {
+            background-color: rgb(77, 64, 64);
+            border-radius: 20px;
+            color: bisque;
+        }
+
+        .navbar::before {
+            content: "";
+            background-color: black;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 1;
+
+        }
+
+        .heading {
+            margin: 0px;
+            text-align: center;
+            font-size: 2.5rem;
+            font-family: 'Baloo Bhai 2', cursive;
+
+        }
+
+        /* #main::before{
+        content: "";
+        background: url(pic.jpg)no-repeat center center/cover;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        opacity: 0.8;
+        
+
+    } */
+        input[type="file" i] {
+            margin-top: 5px;
+        }
+
+
+
+        .ftco-footer {
+
+            display: inline-block;
+            width: 100%;
+            margin: auto;
+            /* position: fixed;
+            bottom: 2px; */
+            background-color: black;
+            color: white;
+        }
+
+        .ftco-footer .box {
+            margin: 0px auto;
+        }
+
+        .section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .section::before {
+            content: "";
+            /* background: url("bg_3.jpg") no-repeat center center; */
+            background-repeat: no-repeat;
+            background: url("{{url_for('static',filename='bg_3.jpg')}}") no-repeat center center;
+            position: absolute;
+            height: 67%;
+            width: 100%;
+            z-index: -1;
+            opacity: 1;
+
+        }
+
+        .button {
+            padding: 15px 25px;
+            font-size: 24px;
+            text-align: center;
+            cursor: pointer;
+            outline: none;
+            color: #fff;
+            background-color: #04AA6D;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 9px #999;
+        }
+
+        .button:hover {
+            background-color: #3e8e41
+        }
+
+        .button:active {
+            background-color: #3e8e41;
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+            <img src="{{url_for('static',filename='allied-bank-logo.jpg')}}" alt="www.alliedcars.com">
+            <h1 style="color:white;display:flex;align-items:center;">Allied Showroom</h1>
+        </div>
+        <ul>
+            <h2 style="color:white;margin: 20px 75px"> Welcome!,{{result.cname}}</h2>
+            <li><a href="/cus-sign">Logout</a></li>
+
+        </ul>
+    </nav>
+    <div class="flash">
+        <!-- this code is used for showing any sucsees/worning/failur popup message -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{category}}">
+            <span
+                style="font-weight: bold;font-size: 2rem;background-color: #6cce6c;opacity: 0.8;display: flex;justify-content:center;">{{
+                message }}</span>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <div class="d-flex justify-content-center h-100">
+
+            {% block content %}
+
+            {% endblock %}
+            <section class="section" style="height: 499px">
+                <h1 class="heading">Choose your Car</h1>
+
+            </section>
+            <hr style="margin:30px 0px;">
+            <section style="display:flex;flex-wrap:wrap; justify-content: space-evenly;" class="data">
+                {% for item in data %}
+                <div style="border:2px solid black;background-color: bisque;display:flex; flex-direction: column;justify-content: center;align-items: center;width: fit-content;height: fit-content; margin: 30px 0px; padding:18px;"
+                    class="box">
+                    <img src="{{url_for('static',filename='cars.jpg')}}" alt="error" style="height:203px;">
+                    <p>CAR_id: {{item.car_id}}</p>
+                    <p>Manufracturer: {{item.manufacturer}}</p>
+                    <p>Model: {{item.model}}</p>
+                    <p>Branch id: {{item.branch_id}}</p>
+                    <p>price {{item.price}}</p>
+                    <button style="margin:auto; text-align: center;" class="button">Choose </button>
+                </div>
+                {% endfor %}
+                <footer style="display: flex;align-self:baseline;" class="ftco-footer">
+                    <div class="box">
+                        Copyright &copy;
+                        <script>document.write(new Date().getFullYear());</script> All rights reserved by zaeem
+                    </div>
+                </footer>
+            </section>
+
+</body>
+
+</html>

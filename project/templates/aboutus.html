@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aliedcars About-us</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body {
+            background: url("{{url_for('static',filename='stone.jpg')}}");
+            width: auto;
+            height: auto;
+        }
+
+        .navbar {
+            display: flex;
+            position: sticky;
+            /* height: 63px; */
+            width: 100%;
+            background-color: black;
+            opacity: 0.7;
+        }
+
+        .navbar img {
+            margin: 4px;
+            height: 56px;
+            width: 56px;
+        }
+
+        .navbar ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .navbar ul li {
+            list-style: none;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            padding: 15px 17px;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .navbar ul li a:hover {
+            background-color: rgb(77, 64, 64);
+            border-radius: 20px;
+            color: bisque;
+        }
+
+        /* .navbar::before {
+            content: "";
+            background-color:black;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.7;
+        } */
+
+        @media only screen and (max-width:476px) {
+            .navbar ul li a {
+                text-decoration: none;
+                padding: 3px 1px;
+                font-size: 1.25rem;
+                color: white;
+                margin: 0px 3px;
+            }
+        }
+
+        @media only screen and (max-width:383px) {
+            .navbar {
+                display: flex;
+                position: relative;
+                flex-direction: column;
+                width: auto;
+            }
+
+            .navbar img {
+                display: block;
+                margin: auto;
+                height: 56px;
+                width: 56px;
+            }
+
+            .navbar ul li a {
+                text-decoration: none;
+                padding: 3px 1px;
+                font-size: 1.25rem;
+                color: white;
+                margin: 0px 3px;
+                justify-content: center;
+            }
+        }
+
+        #info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 753px;
+        }
+
+        #info h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: white;
+        }
+
+        #info p {
+            color: white;
+            font-size: 1.20rem;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="{{url_for('static',filename='allied-bank-logo.jpg')}}" alt="www.alliedcars.com">
+        </div>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/contactus">Contact us</a></li>
+            <li><a href="/aboutus">About us</a></li>
+        </ul>
+    </nav>
+
+</body>
+
+</html>

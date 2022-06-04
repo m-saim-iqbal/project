@@ -1,0 +1,11 @@
+{
+ "params":
+ {
+     "local_server":"True",
+     "local_uri":"postgresql://postgres:password@localhost/postgres",
+     "upload_location":"C:\\Users\\ZAEEM SHAKIR\\Documents\\4th semester\\project\\static"
+
+ }
+
+
+}

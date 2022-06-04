@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>alliedcars signup</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhai+2&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+        }
+
+        #imgBox img{
+            width: 100%;
+            height: 1200px;
+            position: absolute;
+            z-index: -1;
+            opacity: 0.6;
+        }
+        .navbar {
+            display: flex;
+            position: sticky;
+            /* height: 63px; */
+            width: auto;
+            opacity: 1;
+        }
+
+        .navbar img {
+            margin: 4px;
+            height: 56px;
+            width: 56px;
+        }
+
+        .navbar ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .navbar ul li {
+            list-style: none;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            padding: 15px 17px;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .navbar ul li a:hover {
+            background-color: rgb(77, 64, 64);
+            border-radius: 20px;
+            color: bisque;
+        }
+
+        .navbar::before {
+            content: "";
+            background-color: black;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 1;
+
+        }
+
+        .sign {
+            border: 2px solid black;
+            color: black;
+            text-decoration: none;
+            display: block;
+            width: 106px;
+            text-align: center;
+            border-radius: 30px;
+        }
+
+        .sign:hover {
+            background-color: rgb(63, 4, 63);
+            color: white;
+            transform: scale(1.2);
+        }
+
+        #b1 {
+            border: 3px solid black;
+            border-radius: 50px;
+            color: black;
+            width: 40%;
+            height: 200px;
+            padding: 2px 3px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-family: 'Baloo Bhai 2', cursive;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-transform: uppercase;
+        }
+
+        #b2 {
+            border: 3px solid black;
+            border-radius: 50px;
+            color: black;
+            width: 40%;
+            height: 200px;
+            padding: 2px 3px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-family: 'Baloo Bhai 2', cursive;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-transform: uppercase;
+        }
+
+        #main {
+            display: flex;
+            height: 753px;
+            /* border: 2px solid red; */
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        /* #main::before{
+            content: "";
+            background: url(pic.jpg)no-repeat center center/cover;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.8;
+            
+
+        } */
+        @media only screen and (max-width:780px) {
+            #main {
+                display: flex;
+                flex-direction: column;
+                height: 753px;
+                /* border: 2px solid red; */
+                justify-content: center;
+                align-items: center;
+            }
+
+            #b1 {
+                border: 2px solid black;
+                width: auto;
+                padding: 20px 3px;
+                margin: 15px 3px;
+                text-align: center;
+                color: white;
+                font-size: 1.5rem;
+                font-family: 'Baloo Bhai 2', cursive;
+            }
+
+            #b2 {
+                border: 2px solid black;
+                width: auto;
+                /* height: 348px; */
+                padding: 20px 3px;
+                margin: 15px 3px;
+                color: white;
+                text-align: center;
+                font-size: 1.5rem;
+                font-family: 'Baloo Bhai 2', cursive;
+
+            }
+        }
+
+        @media only screen and (min-width:780px) and (max-width:1493px) {
+
+            #b1 {
+                color: white;
+            }
+
+            #b2 {
+
+                color: white;
+            }
+        }
+
+        @media only screen and (max-width:476px) {
+            .navbar ul li a {
+                text-decoration: none;
+                padding: 3px 1px;
+                font-size: 1.25rem;
+                color: white;
+                margin: 0px 3px;
+            }
+        }
+
+        @media only screen and (max-width:383px) {
+            .navbar {
+                display: flex;
+                position: relative;
+                flex-direction: column;
+                width: auto;
+            }
+
+            .navbar img {
+                display: block;
+                margin: auto;
+                height: 56px;
+                width: 56px;
+            }
+
+            .navbar ul li a {
+                text-decoration: none;
+                padding: 3px 1px;
+                font-size: 1.25rem;
+                color: white;
+                margin: 0px 3px;
+                justify-content: center;
+            }
+            
+            #b1 {
+                font-size: 1.25rem;
+                
+            }
+
+            #b2 {
+                
+                font-size: 1.25rem;
+                
+
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="imgBox">
+        <img src="{{url_for('static',filename='pic.jpg')}}" alt="">
+    </div>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="{{url_for('static',filename='allied-bank-logo.jpg')}}" alt="www.alliedcars.com">
+        </div>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/contactus">Contact us</a></li>
+            <li><a href="/aboutus">About us</a></li>
+        </ul>
+    </nav>
+    <section id="main">
+        <div id="b1">
+            <h1>For Customer Click Below </h1>
+            <a href="/cus-sign" class="sign" id="csign">Sign In</a>
+        </div>
+        <div id="b2">
+            <h1>For Agents Click Below </h1>
+            <a href="/agent-sign" class="sign" id="asign">Sign In</a>
+        </div>
+    </section>
+</body>
+
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>admin_upload</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #imgbox img {
+            width: 100%;
+            height: 1200px;
+            position: absolute;
+            z-index: -1;
+            opacity: 1;
+        }
+
+        .navbar {
+            display: flex;
+            position: sticky;
+            justify-content: space-between;
+            top: 1px;
+            /* height: 63px; */
+            width: auto;
+            opacity: 0.8;
+        }
+
+        .navbar .container {
+            display: flex;
+        }
+
+        .navbar img {
+            margin: 4px;
+            height: 56px;
+            width: 56px;
+        }
+
+        .navbar ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .navbar ul li {
+            list-style: none;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            padding: 15px 17px;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .navbar ul li a:hover {
+            background-color: rgb(77, 64, 64);
+            border-radius: 20px;
+            color: bisque;
+        }
+
+        .navbar::before {
+            content: "";
+            background-color:orange;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 1;
+
+        }
+
+        form input[submit] {
+            border: 2px solid red;
+            color: red;
+            text-decoration: none;
+            display: block;
+            width: 106px;
+            margin: auto;
+            text-align: center;
+            border-radius: 30px;
+        }
+
+        #b2 {
+            border: 2px solid white;
+            width: 40%;
+            height: 561px;
+            padding: 2px 3px;
+            margin: 20px;
+            color: black;
+            /* text-align: center; */
+            font-size: 1.5rem;
+            font-family: 'Baloo Bhai 2', cursive;
+
+        }
+
+        #main input {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 60%;
+        }
+
+        #main input[type='submit'] {
+            margin: 15px 0px;
+            border-radius: 10px;
+
+
+        }
+
+        #main input[type='submit']:hover {
+            margin: 10px 0px;
+            background-color: white;
+            color: black;
+            transform: scale(1.5);
+        }
+
+        #main form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .header {
+            color: white;
+            display: block;
+        }
+
+        #main {
+            display: flex;
+            height: 753px;
+            /* border: 2px solid red; */
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        #b2>h1 {
+            text-align: center;
+            padding: 0px;
+            margin: 2px 0px;
+
+        }
+
+        .heading {
+            text-align: center;
+            font-size: 2.5rem;
+            font-family: 'Baloo Bhai 2', cursive;
+
+        }
+
+        /* #main::before{
+        content: "";
+        background: url(pic.jpg)no-repeat center center/cover;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        opacity: 0.8;
+        
+
+    } */
+        input[type="file" i] {
+            margin-top: 5px;
+        }
+
+        .navbar .name {
+            display: flex;
+            justify-content: space-evenly;
+            width: 455px;
+            color: white;
+            margin: 0px 11px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <img src="{{url_for('static',filename='allied-bank-logo.jpg')}}" alt="www.alliedcars.com">
+            </div>
+            <ul>
+                <li><a href="/admin_upload">upload</a></li>
+                <li><a href="/customers">customer</a></li>
+                <li><a href="/update">update</a></li>
+                <li><a href="/delete">delete</a></li>
+            </ul>
+        </div>
+        <div class="name">
+            <h2 style="margin:20px 0px;"> Welcome! {{result.name}}</h2>
+            <ul>
+                <li><a href="/agent-sign">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div id="imgbox">
+        <img src="{{url_for('static',filename='agents.jpeg')}}">
+    </div>
+    <div class="flash">
+        <!-- this code is used for showing any sucsees/worning/failur popup message -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{category}}">
+            <span
+                style="font-weight: bold;font-size: 2rem;background-color: #6cce6c;opacity: 0.8;display: flex;justify-content:center;">{{
+                message }}</span>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <div class="d-flex justify-content-center h-100">
+
+            {% block content %}
+
+            {% endblock %}
+            <section id="main">
+                <div id="b2">
+                    <h1 style="color:white;">Upload car</h1>
+                    <form action="/admin_upload" method="POST" enctype="multipart/form-data" style="color:white;">
+                        CAR ID: <input type="number" name="cid" id="cid">
+                        MODEL: <input type="text" name="mod" id="mod" place>
+                        PRICE: <input type="number" name="price" id="price">
+                        BRANCH ID: <input type="number" name="bid" id="bid">
+                        MANUFACTURER: <input type="text" name="manu" id="manu">
+                        <input type="file" name="img1" id="img1" accept="image/*">
+                        <input type="submit" value="Upload">
+                    </form>
+                </div>
+
+            </section>
+
+</body>
+
+</html>
